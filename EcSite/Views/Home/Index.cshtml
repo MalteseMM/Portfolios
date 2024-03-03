@@ -1,8 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model EcSite.Models.Product
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table class="table table-responsive table-hover table-bordered table-striped caption-top w-auto">
+    <caption class="caption-side: top;">売れ筋商品一覧</caption>
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">@Html.LabelFor(model => model.ProductName)</th>
+            <th scope="col">@Html.LabelFor(model => model.Price)</th>
+            <th scope="col" class="visually-hidden">@Html.LabelFor(model => model.ProductId)</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @foreach (var item in ViewBag.Products)
+        {
+            <tr>
+                <td scope="row">
+                    <a>@item.ProductName</a>
+                </td>
+                <td scope="row">@item.TotalSalesOfTheLastWeek</td>
+                <td scope="row" class="visually-hidden">@item.ProductId</td>
+            </tr>
+        }
+    </tbody>
+</table>

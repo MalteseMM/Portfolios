@@ -15,7 +15,9 @@ namespace EcSite.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var productViewModel = new Product();
+            ViewBag.Products = productViewModel.GetTopTwentyProductsOfTheLastWeek();
+            return View(productViewModel);
         }
 
         public IActionResult Privacy()
