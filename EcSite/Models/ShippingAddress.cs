@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EcSite.Models;
 
 public partial class ShippingAddress
 {
+    [Key]
     public long AddessId { get; set; }
 
     public string Postcode { get; set; } = null!;

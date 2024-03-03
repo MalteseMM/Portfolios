@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EcSite.Models;
 
 public partial class Review
 {
+    [Key]
     public long RateId { get; set; }
 
     public long ProductId { get; set; }
