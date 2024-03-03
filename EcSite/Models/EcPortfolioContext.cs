@@ -244,7 +244,7 @@ public partial class EcPortfolioContext : DbContext
 
             entity.Property(e => e.OrderId).HasColumnName("order_id");
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(sysdatetime())")
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnName("created_at");
             entity.Property(e => e.CreatedBy)
                 .HasMaxLength(50)
@@ -258,7 +258,7 @@ public partial class EcPortfolioContext : DbContext
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.ShippingAddressId).HasColumnName("shipping_address_id");
             entity.Property(e => e.UpdatedAt)
-                .HasDefaultValueSql("(sysdatetime())")
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnName("updated_at");
             entity.Property(e => e.UpdatedBy)
                 .HasMaxLength(50)
