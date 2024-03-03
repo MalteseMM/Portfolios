@@ -233,10 +233,10 @@ CREATE TABLE [dbo].[purchase_order](
 	[payment_option_id] [tinyint] NOT NULL,
 	[order_quantity] [int] NOT NULL,
 	[order_status_id] [tinyint] NOT NULL,
-	[created_by] [varchar](50) NULL,
-	[created_at] [datetime2](7) NULL,
-	[updated_by] [varchar](50) NULL,
-	[updated_at] [datetime2](7) NULL,
+	[created_by] [varchar](50) NOT NULL,
+	[created_at] [datetime2](7) NOT NULL,
+	[updated_by] [varchar](50) NOT NULL,
+	[updated_at] [datetime2](7) NOT NULL,
  CONSTRAINT [PK_purchase_order] PRIMARY KEY CLUSTERED 
 (
 	[order_id] ASC
