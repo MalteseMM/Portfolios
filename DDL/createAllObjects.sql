@@ -193,7 +193,23 @@ CREATE TABLE [dbo].[product_brand](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[product_key_word]    Script Date: 2024/03/03 16:19:24 ******/
+/****** Object:  Table [dbo].[product_image]    Script Date: 2024/03/03 20:12:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[product_image](
+	[image_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[product_id] [bigint] NOT NULL,
+	[image_description] [nvarchar](100) NULL,
+	[image_data] [varbinary](max) NOT NULL,
+ CONSTRAINT [PK_image] PRIMARY KEY CLUSTERED 
+(
+	[image_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[product_key_word]    Script Date: 2024/03/03 20:12:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
