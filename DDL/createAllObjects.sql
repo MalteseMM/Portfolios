@@ -160,7 +160,7 @@ CREATE TABLE [dbo].[product](
 	[product_name] [nvarchar](100) NOT NULL,
 	[price] [decimal](23, 8) NOT NULL,
 	[discount_percentage] [tinyint] NULL,
-	[size] [nvarchar](30) NOT NULL,
+	[size] [nvarchar](30) NULL,
 	[model_number] [varchar](30) NULL,
 	[product_description] [nvarchar](100) NULL,
 	[product_details] [nvarchar](max) NULL,

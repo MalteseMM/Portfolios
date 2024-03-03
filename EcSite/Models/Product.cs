@@ -13,7 +13,7 @@ public partial class Product
 
     public byte? DiscountPercentage { get; set; }
 
-    public string Size { get; set; } = null!;
+    public string? Size { get; set; }
 
     public string? ModelNumber { get; set; }
 
