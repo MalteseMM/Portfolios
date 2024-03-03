@@ -27,6 +27,8 @@ public partial class EcPortfolioContext : DbContext
 
     public virtual DbSet<ProductBrand> ProductBrands { get; set; }
 
+    public virtual DbSet<ProductImage> ProductImages { get; set; }
+
     public virtual DbSet<ProductKeyWord> ProductKeyWords { get; set; }
 
     public virtual DbSet<ProductManufacturer> ProductManufacturers { get; set; }
@@ -199,15 +201,31 @@ public partial class EcPortfolioContext : DbContext
             entity.Property(e => e.ManufacturerId).HasColumnName("manufacturer_id");
         });
 
-        modelBuilder.Entity<ProductKeyWord>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("product_key_word");
 
-            entity.Property(e => e.KeyWordId).HasColumnName("key_word_id");
+        modelBuilder.Entity<ProductImage>(entity =>
+        {
+            entity.HasKey(e => e.ImageId).HasName("PK_image");
+
+            entity.ToTable("product_image");
+
+            entity.Property(e => e.ImageId).HasColumnName("image_id");
+            entity.Property(e => e.ImageData).HasColumnName("image_data");
+            entity.Property(e => e.ImageDescription)
+                .HasMaxLength(100)
+                .HasColumnName("image_description");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
         });
+
+
+        modelBuilder.Entity<ProductKeyWord>(entity =>
+            {
+                entity
+                    .HasNoKey()
+                    .ToTable("product_key_word");
+
+                entity.Property(e => e.KeyWordId).HasColumnName("key_word_id");
+                entity.Property(e => e.ProductId).HasColumnName("product_id");
+            });
 
         modelBuilder.Entity<ProductManufacturer>(entity =>
         {
