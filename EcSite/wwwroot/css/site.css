@@ -31,3 +31,7 @@ body {
     background-size: 100%;
     margin: 0 10px 5px 10px;
 }
+
+.navbar .navbar-nav .nav-link {
+    padding: 0.75rem 1rem;
+}
