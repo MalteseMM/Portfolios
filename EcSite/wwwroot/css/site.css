@@ -23,11 +23,11 @@ body {
 
 .nav-item-far-right {
     display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.6em;
+    height: 1.6em;
     vertical-align: middle;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
-    margin: 0 10px 0 10px;
+    margin: 0 10px 5px 10px;
 }
