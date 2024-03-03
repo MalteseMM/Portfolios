@@ -189,7 +189,7 @@ CREATE TABLE [dbo].[purchase_order](
 	[product_id] [bigint] NOT NULL,
 	[shipping_address_id] [bigint] NOT NULL,
 	[payment_option_id] [tinyint] NOT NULL,
-	[quantity] [int] NOT NULL,
+	[order_quantity] [int] NOT NULL,
 	[order_status_id] [tinyint] NOT NULL,
 	[created_by] [varchar](50) NULL,
 	[created_at] [datetime2](7) NULL,
