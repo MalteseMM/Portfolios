@@ -100,7 +100,39 @@ CREATE TABLE [dbo].[category](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[payment_method]    Script Date: 2024/03/03 15:36:52 ******/
+/****** Object:  Table [dbo].[key_word]    Script Date: 2024/03/03 16:19:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[key_word](
+	[key_word_id] [bigint] NOT NULL,
+	[key_word] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_key_word] PRIMARY KEY CLUSTERED 
+(
+	[key_word_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[order_status]    Script Date: 2024/03/03 16:19:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[order_status](
+	[status_id] [tinyint] NOT NULL,
+	[status_name] [nvarchar](10) NOT NULL,
+	[created_by] [varchar](30) NOT NULL,
+	[created_at] [datetime] NOT NULL,
+	[updated_by] [varchar](30) NOT NULL,
+	[updated_at] [datetime] NOT NULL,
+ CONSTRAINT [PK_order_status] PRIMARY KEY CLUSTERED 
+(
+	[status_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[payment_method]    Script Date: 2024/03/03 16:19:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -161,7 +193,17 @@ CREATE TABLE [dbo].[product_brand](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[product_manufacturer]    Script Date: 2024/03/03 15:36:52 ******/
+/****** Object:  Table [dbo].[product_key_word]    Script Date: 2024/03/03 16:19:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[product_key_word](
+	[product_id] [bigint] NOT NULL,
+	[key_word_id] [bigint] NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[product_manufacturer]    Script Date: 2024/03/03 16:19:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -261,6 +303,10 @@ GO
 ALTER TABLE [dbo].[category] ADD  CONSTRAINT [DF_category_created_at]  DEFAULT (getdate()) FOR [created_at]
 GO
 ALTER TABLE [dbo].[category] ADD  CONSTRAINT [DF_category_updated_at]  DEFAULT (getdate()) FOR [updated_at]
+GO
+ALTER TABLE [dbo].[order_status] ADD  CONSTRAINT [DF_order_status_created_at]  DEFAULT (getdate()) FOR [created_at]
+GO
+ALTER TABLE [dbo].[order_status] ADD  CONSTRAINT [DF_order_status_updated_at]  DEFAULT (getdate()) FOR [updated_at]
 GO
 ALTER TABLE [dbo].[payment_method] ADD  CONSTRAINT [DF_payment_method_created_at]  DEFAULT (getdate()) FOR [created_at]
 GO
