@@ -11,7 +11,7 @@ public partial class ProductBrand
     public long BrandId { get; set; }
 
     [Required]
-    public string BrandName { get; set; } = null!;
+    public string BrandName { get; set; }
 
     [Required]
     public long ManufacturerId { get; set; }
