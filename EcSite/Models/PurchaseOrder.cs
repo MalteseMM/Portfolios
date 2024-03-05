@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace EcSite.Models;
-
 public partial class PurchaseOrder
 {
     [Key]
@@ -20,6 +20,7 @@ public partial class PurchaseOrder
     public byte PaymentOptionId { get; set; }
 
     [Required]
+    [Display(Name = "数量")]
     public int OrderQuantity { get; set; }
 
     [Required]

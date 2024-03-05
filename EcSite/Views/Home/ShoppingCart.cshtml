@@ -1,0 +1,33 @@
+﻿@model EcSite.ViewModels.DisplayOrderViewModel
+
+<section>
+    <p>ショッピングカート</p>
+    @foreach (var item in ViewBag.DesiredProducts)
+    {
+        <span>@item.ProductName</span>
+        <div>
+            @Html.Raw($"<span class=\"{(item.StockQuantity == 0 ? "font-red" : "font-blue")}\">{item.GetMessageForStockQuantity(item.StockQuantity)}</span>")
+        </div>
+        <div>
+            <label>@Html.LabelFor(x => x.OrderQuantity)</label>
+            <select class="option-quantity">
+                @for (int i = 1; i <= item.StockQuantity; i++)
+                {
+                    @if (i == @item.OrderQuantity)
+                    {
+                        <option selected>@i</option>
+                    }
+                    else
+                    {
+                        <option>@i</option>
+                    }
+                }
+            </select>
+        </div>
+        <div>
+            <span>@Html.LabelFor(x => x.Price)</span>
+            <span>@item.Price</span>
+        </div>
+        <br />
+    }
+</section>
