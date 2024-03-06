@@ -114,14 +114,14 @@ CREATE TABLE [dbo].[key_word](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[order_status]    Script Date: 2024/03/03 16:19:24 ******/
+/****** Object:  Table [dbo].[order_status]    Script Date: 2024/03/07 0:25:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[order_status](
 	[status_id] [tinyint] NOT NULL,
-	[status_name] [nvarchar](10) NOT NULL,
+	[status_name] [nvarchar](30) NOT NULL,
 	[created_by] [varchar](30) NOT NULL,
 	[created_at] [datetime] NOT NULL,
 	[updated_by] [varchar](30) NOT NULL,
