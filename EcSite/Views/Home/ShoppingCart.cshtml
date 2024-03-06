@@ -1,8 +1,8 @@
-﻿@model List<EcSite.ViewModels.DisplayOrderViewModel>
+﻿@model EcSite.ViewModels.DisplayOrderViewModel
 
 <h5>ショッピングカート</h5>
 <section style="display:inline-block; width:70%;margin-top:5px;">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Orders)
     {
         <section>
             <div class="d-inline-block">
@@ -17,13 +17,14 @@
                     @Html.Raw($"<span class=\"{(item.StockQuantity == 0 ? "font-red" : "font-blue")}\">{item.GetMessageForStockQuantity(item.StockQuantity)}</span>")
                 </span>
                 <br />
-                <label>@Html.LabelFor(viewModelList => viewModelList[0].OrderQuantity)</label>
-                <select class="option-quantity">
+                <label>@Html.LabelFor(model => model.Orders[0].OrderQuantity)</label>
+                <select class="option-quantity" id="selectOrderQuantity"> @* TODO:購入ボタン押下で、変更した数量をコントローラーに送信するよう実装 *@
                     @for (int i = 0; i <= item.StockQuantity; i++)
                     {
                         @if (i == @item.OrderQuantity)
                         {
                             <option selected>@i</option>
+                            
                         }
                         else
                         {
@@ -32,7 +33,7 @@
                     }
                 </select>
                 <br />
-                <label>@Html.LabelFor(viewModelList => viewModelList[0].Price)</label>
+                <lable>@Html.LabelFor(model => model.Orders[0].Price)</lable>
                 <span>@item.Price</span>
             </div>
         </section>
@@ -40,5 +41,19 @@
     }
 </section>
 <section style="display:inline-block; vertical-align:top; width:20%;">
-    <button class="btn btn-warning btn-width-long">購入する</button>
+    <form asp-controller="Home" asp-action="ShoppingCart" formmethod="post">
+        @for (int i = 0; i < Model.Orders.Count; i++)
+        {
+            <input type="hidden" name="orderProducts.Orders[@i].ProductId" value="@Model.Orders[i].ProductId" />
+            <input type="hidden" name="orderProducts.Orders[@i].ProductName" value="@Model.Orders[i].ProductName" />
+            <input type="hidden" name="orderProducts.Orders[@i].Price" value="@Model.Orders[i].Price" />
+            <input type="hidden" name="orderProducts.Orders[@i].DiscountPercentage" value="@Model.Orders[i].DiscountPercentage" />
+            <input type="hidden" name="orderProducts.Orders[@i].OrderQuantity" value="@Model.Orders[i].OrderQuantity" />
+            <input type="hidden" name="orderProducts.Orders[@i].Size" value="@Model.Orders[i].Size" />
+            <input type="hidden" name="orderProducts.Orders[@i].ModelNumber" value="@Model.Orders[i].ModelNumber" />
+            <input type="hidden" name="orderProducts.Orders[@i].StockQuantity" value="@Model.Orders[i].StockQuantity" />
+            <input type="hidden" name="orderProducts.Orders[@i].BrandName" value="@Model.Orders[i].BrandName" />
+        }
+        <button class="btn btn-warning btn-width-long" type="submit">購入する</button>
+    </form>
 </section>

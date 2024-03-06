@@ -11,6 +11,9 @@ public partial class PurchaseOrder
     public long OrderId { get; set; }
 
     [Required]
+    public string UserId { get; set; }
+
+    [Required]
     public long ProductId { get; set; }
 
     [Required]

@@ -19,34 +19,39 @@ namespace EcSite.Controllers
             //var user = new User() { UserId = "xxx" }; //TODO:ログインユーザーにする。
             //user.SetUserWishlist();
 
-            var productViewModel = new Product();
-            ViewBag.Products = productViewModel.GetTopTwentyProductsOfTheLastWeek();
-            return View(productViewModel);
+            var products = new Product();
+            ViewBag.Products = products.GetTopTwentyProductsOfTheLastWeek();
+            return View(products);
         }
 
         [HttpGet]
         public IActionResult ShoppingCart()
         {
-            var orderViewModel = new List<DisplayOrderViewModel>() {
-                new DisplayOrderViewModel()
+            var orderViewModel = _userId.GetWishingList();
+            orderViewModel.Orders = new List<DisplayOrder>() {
+                new DisplayOrder()
                 {
                     ProductId = 1,
                     ProductName = "商品１ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-                    StockQuantity =5,
-                    OrderQuantity =2,
+                    StockQuantity = 5,
+                    OrderQuantity = 2,
                     BrandName = "ブランド名",
-                    Price =1000
+                    Price = 1000
                 },
-                new DisplayOrderViewModel()
+                new DisplayOrder()
                 {
                     ProductId = 1,
                     ProductName = "商品2",
-                    Price =2000
+                    Price = 2000
                 }
-            };
-
-            //TODO:DisplayOrderViewModelのリストを入れるメソッド呼び出す
+                };
             return View(orderViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ShoppingCart(DisplayOrderViewModel orderProducts)
+        {
+            return View(orderProducts);
         }
 
         public IActionResult Privacy()
