@@ -41,6 +41,9 @@ public partial class Product
     public long CategoryId { get; set; }
 
     [Required]
+    public byte[] MainImage { get; set; } 
+
+    [Required]
     public string CreatedBy { get; set; }
 
     [Required]
@@ -68,18 +71,18 @@ public partial class Product
         {
             return db.PurchaseOrders
                     .Join(db.Products, o => o.ProductId, p => p.ProductId, (o, p) => new { o, p })
-                    .Join(db.ProductImages, op => op.o.ProductId, i => i.ProductId, (op, i) => new { op, i })
-                    .Where(x=>x.op.o.CreatedAt >= DateTime.Today.AddDays(-7))
-                    .Where(x=>x.op.o.CreatedAt <= DateTime.Today)
-                    //.Where(x=>x.op.o.OrderStatusId = 4) TODO:4(配達済み）の注文だけカウントするようにする
+                    .Where(x=>x.o.CreatedAt >= DateTime.Today.AddDays(-7))
+                    .Where(x=>x.o.CreatedAt <= DateTime.Today)
+                    //.Where(x=>x.op.o.OrderStatusId = 4) TODO:配達済みの注文だけカウントするようにする
                     .GroupBy(
-                        x => new { x.op.o.ProductId, x.op.p.ProductName, x.op.p.Price },
+                        x => new { x.o.ProductId, x.p.ProductName, x.p.Price ,x.p.MainImage},
                         (key, group) => new Product
                         {
                             ProductId = key.ProductId,
                             ProductName = key.ProductName,
                             Price = key.Price,
-                            TotalSalesOfTheLastWeek = group.Sum(x => x.op.o.OrderQuantity * x.op.p.Price)
+                            TotalSalesOfTheLastWeek = group.Sum(x => x.o.OrderQuantity * x.p.Price),
+                            MainImage = key.MainImage
                         })
                     .OrderByDescending(x => x.TotalSalesOfTheLastWeek)
                     .Take(20)

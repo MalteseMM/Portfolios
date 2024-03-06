@@ -177,6 +177,7 @@ public partial class EcPortfolioContext : DbContext
                 .HasMaxLength(30)
                 .HasColumnName("size");
             entity.Property(e => e.StockQuantity).HasColumnName("stock_quantity");
+            entity.Property(e => e.MainImage).HasColumnName("main_image");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -206,7 +207,7 @@ public partial class EcPortfolioContext : DbContext
         {
             entity.HasKey(e => e.ImageId).HasName("PK_image");
 
-            entity.ToTable("product_image");
+            entity.ToTable("product_additional_image");
 
             entity.Property(e => e.ImageId).HasColumnName("image_id");
             entity.Property(e => e.ImageData).HasColumnName("image_data");
@@ -261,6 +262,10 @@ public partial class EcPortfolioContext : DbContext
             entity.ToTable("purchase_order");
 
             entity.Property(e => e.OrderId).HasColumnName("order_id");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("user_id");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnName("created_at");
