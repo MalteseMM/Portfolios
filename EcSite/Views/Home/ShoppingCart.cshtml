@@ -1,10 +1,10 @@
-﻿@model EcSite.ViewModels.DisplayOrderViewModel
+﻿@model List<EcSite.ViewModels.DisplayOrderViewModel>
 
 <h5>ショッピングカート</h5>
 <section style="display:inline-block; width:70%;margin-top:5px;">
-    @foreach (var item in ViewBag.DesiredProducts)
+    @foreach (var item in Model)
     {
-        <section >
+        <section>
             <div class="d-inline-block">
                 <img class="image-middle" src="~/images//cosmeticsAssortment.jpg" />
             </div>
@@ -17,9 +17,9 @@
                     @Html.Raw($"<span class=\"{(item.StockQuantity == 0 ? "font-red" : "font-blue")}\">{item.GetMessageForStockQuantity(item.StockQuantity)}</span>")
                 </span>
                 <br />
-                <label>@Html.LabelFor(x => x.OrderQuantity)</label>
+                <label>@Html.LabelFor(viewModelList => viewModelList[0].OrderQuantity)</label>
                 <select class="option-quantity">
-                    @for (int i = 1; i <= item.StockQuantity; i++)
+                    @for (int i = 0; i <= item.StockQuantity; i++)
                     {
                         @if (i == @item.OrderQuantity)
                         {
@@ -32,7 +32,7 @@
                     }
                 </select>
                 <br />
-                <lable>@Html.LabelFor(x => x.Price)</lable>
+                <label>@Html.LabelFor(viewModelList => viewModelList[0].Price)</label>
                 <span>@item.Price</span>
             </div>
         </section>

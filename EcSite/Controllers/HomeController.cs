@@ -27,12 +27,11 @@ namespace EcSite.Controllers
         [HttpGet]
         public IActionResult ShoppingCart()
         {
-            var orderViewModel = new DisplayOrderViewModel();
-            ViewBag.DesiredProducts = new List<DisplayOrderViewModel>() {
+            var orderViewModel = new List<DisplayOrderViewModel>() {
                 new DisplayOrderViewModel()
                 {
                     ProductId = 1,
-                    ProductName = "商品１",
+                    ProductName = "商品１ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
                     StockQuantity =5,
                     OrderQuantity =2,
                     BrandName = "ブランド名",
