@@ -167,7 +167,7 @@ CREATE TABLE [dbo].[product](
 	[stock_quantity] [int] NOT NULL,
 	[brand_id] [bigint] NOT NULL,
 	[category_id] [bigint] NOT NULL,
-	[main_image] [varbinary](1) NOT NULL,
+	[main_image] [varbinary](max) NOT NULL,
 	[created_by] [varchar](30) NOT NULL,
 	[created_at] [datetime] NOT NULL,
 	[updated_by] [varchar](30) NOT NULL,
