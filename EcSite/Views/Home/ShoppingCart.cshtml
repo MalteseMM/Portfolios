@@ -4,11 +4,11 @@
 <section style="display:inline-block; width:70%;margin-top:5px;">
     @foreach (var item in ViewBag.DesiredProducts)
     {
-        <section>
-            <div style="display:inline-block;">
+        <section >
+            <div class="d-inline-block">
                 <img class="image-middle" src="~/images//cosmeticsAssortment.jpg" />
             </div>
-            <div style="display:inline-block; vertical-align:top;">
+            <div class="d-inline-block align-top" style="max-width:70%;overflow-wrap:anywhere;">
                 <span>@item.ProductName</span>
                 <br />
                 <span>@item.BrandName</span>
