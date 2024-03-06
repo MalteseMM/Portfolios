@@ -237,13 +237,14 @@ CREATE TABLE [dbo].[product_manufacturer](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[purchase_order]    Script Date: 2024/03/03 15:36:52 ******/
+/****** Object:  Table [dbo].[purchase_order]    Script Date: 2024/03/07 0:25:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[purchase_order](
 	[order_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[user_id] [varchar](30) NOT NULL,
 	[product_id] [bigint] NOT NULL,
 	[shipping_address_id] [bigint] NOT NULL,
 	[payment_option_id] [tinyint] NOT NULL,
