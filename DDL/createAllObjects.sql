@@ -167,6 +167,7 @@ CREATE TABLE [dbo].[product](
 	[stock_quantity] [int] NOT NULL,
 	[brand_id] [bigint] NOT NULL,
 	[category_id] [bigint] NOT NULL,
+	[main_image] [varbinary](1) NOT NULL,
 	[created_by] [varchar](30) NOT NULL,
 	[created_at] [datetime] NOT NULL,
 	[updated_by] [varchar](30) NOT NULL,
@@ -177,7 +178,23 @@ CREATE TABLE [dbo].[product](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[product_brand]    Script Date: 2024/03/03 15:36:52 ******/
+/****** Object:  Table [dbo].[product_additional_image]    Script Date: 2024/03/07 0:25:00 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[product_additional_image](
+	[image_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[product_id] [bigint] NOT NULL,
+	[image_description] [nvarchar](100) NULL,
+	[image_data] [varbinary](max) NOT NULL,
+ CONSTRAINT [PK_image] PRIMARY KEY CLUSTERED 
+(
+	[image_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[product_brand]    Script Date: 2024/03/07 0:25:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -193,23 +210,7 @@ CREATE TABLE [dbo].[product_brand](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[product_image]    Script Date: 2024/03/03 20:12:23 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[product_image](
-	[image_id] [bigint] IDENTITY(1,1) NOT NULL,
-	[product_id] [bigint] NOT NULL,
-	[image_description] [nvarchar](100) NULL,
-	[image_data] [varbinary](max) NOT NULL,
- CONSTRAINT [PK_image] PRIMARY KEY CLUSTERED 
-(
-	[image_id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[product_key_word]    Script Date: 2024/03/03 20:12:23 ******/
+/****** Object:  Table [dbo].[product_key_word]    Script Date: 2024/03/07 0:25:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
