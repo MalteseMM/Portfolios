@@ -1,7 +1,7 @@
 ﻿@model EcSite.ViewModels.DisplayOrderViewModel
 
-<section>
-    <p>ショッピングカート</p>
+<h4>ショッピングカート</h4>
+<section style="display:inline-block; width:70%;margin-top:5px;">
     @foreach (var item in ViewBag.DesiredProducts)
     {
         <section>
@@ -38,4 +38,7 @@
         </section>
         <br />
     }
+</section>
+<section style="display:inline-block; vertical-align:top; width:20%;">
+    <button class="btn btn-warning btn-width-long">購入する</button>
 </section>
