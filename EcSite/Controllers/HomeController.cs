@@ -16,6 +16,9 @@ namespace EcSite.Controllers
 
         public IActionResult Index()
         {
+            //var user = new User() { UserId = "xxx" }; //TODO:ログインユーザーにする。
+            //user.SetUserWishlist();
+
             var productViewModel = new Product();
             ViewBag.Products = productViewModel.GetTopTwentyProductsOfTheLastWeek();
             return View(productViewModel);
@@ -32,6 +35,7 @@ namespace EcSite.Controllers
                     ProductName = "商品１",
                     StockQuantity =5,
                     OrderQuantity =2,
+                    BrandName = "ブランド名",
                     Price =1000
                 },
                 new DisplayOrderViewModel()

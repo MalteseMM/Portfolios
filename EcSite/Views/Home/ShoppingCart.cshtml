@@ -4,30 +4,38 @@
     <p>ショッピングカート</p>
     @foreach (var item in ViewBag.DesiredProducts)
     {
-        <span>@item.ProductName</span>
-        <div>
-            @Html.Raw($"<span class=\"{(item.StockQuantity == 0 ? "font-red" : "font-blue")}\">{item.GetMessageForStockQuantity(item.StockQuantity)}</span>")
-        </div>
-        <div>
-            <label>@Html.LabelFor(x => x.OrderQuantity)</label>
-            <select class="option-quantity">
-                @for (int i = 1; i <= item.StockQuantity; i++)
-                {
-                    @if (i == @item.OrderQuantity)
+        <section>
+            <div style="display:inline-block;">
+                <img class="image-middle" src="~/images//cosmeticsAssortment.jpg" />
+            </div>
+            <div style="display:inline-block; vertical-align:top;">
+                <span>@item.ProductName</span>
+                <br />
+                <span>@item.BrandName</span>
+                <br />
+                <span>
+                    @Html.Raw($"<span class=\"{(item.StockQuantity == 0 ? "font-red" : "font-blue")}\">{item.GetMessageForStockQuantity(item.StockQuantity)}</span>")
+                </span>
+                <br />
+                <label>@Html.LabelFor(x => x.OrderQuantity)</label>
+                <select class="option-quantity">
+                    @for (int i = 1; i <= item.StockQuantity; i++)
                     {
-                        <option selected>@i</option>
+                        @if (i == @item.OrderQuantity)
+                        {
+                            <option selected>@i</option>
+                        }
+                        else
+                        {
+                            <option>@i</option>
+                        }
                     }
-                    else
-                    {
-                        <option>@i</option>
-                    }
-                }
-            </select>
-        </div>
-        <div>
-            <span>@Html.LabelFor(x => x.Price)</span>
-            <span>@item.Price</span>
-        </div>
+                </select>
+                <br />
+                <lable>@Html.LabelFor(x => x.Price)</lable>
+                <span>@item.Price</span>
+            </div>
+        </section>
         <br />
     }
 </section>
